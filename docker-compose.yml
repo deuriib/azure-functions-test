@@ -1,0 +1,6 @@
+﻿services:
+  azurefunctions.walkthrough:
+    image: azurefunctions.walkthrough
+    build:
+      context: .
+      dockerfile: AzureFunctions.Walkthrough/Dockerfile
