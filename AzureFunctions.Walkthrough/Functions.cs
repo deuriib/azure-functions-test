@@ -27,4 +27,23 @@ public static class Functions
         return response;
         
     }
+    
+    [Function("CurrentTime")]
+    public static async Task<HttpResponseData> RunCurrentTime(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "current-time-utc")] 
+        HttpRequestData req,
+        FunctionContext executionContext)
+    {
+        var logger = executionContext.GetLogger("CurrentTime");
+        logger.LogInformation("C# HTTP trigger function processed a request");
+
+        var response = req.CreateResponse();
+        await response.WriteAsJsonAsync(new
+        {
+            currentTime = DateTime.UtcNow
+        });
+
+        return response;
+        
+    }
 }
